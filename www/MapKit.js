@@ -26,16 +26,12 @@ var MapKit = function() {
 // Returns default params, overrides if provided with values
 function setDefaults(options) {
     var defaults = {
-        height: 460,
-		diameter: 1000,
-		atBottom: true,
-		lat: 49.281468,
-		lon: -123.104446
+			lat: 49.281468,
+			lon: -123.104446
     };
-
     if (options) {
-        for(var i in defaults) 
-            if(typeof options[i] === "undefined") 
+        for(var i in defaults)
+            if(typeof options[i] === "undefined")
                 options[i] = defaults[i];
     }
 
@@ -45,8 +41,12 @@ function setDefaults(options) {
 MapKit.prototype = {
 
 	showMap: function(success, error, options) {
-	    options = setDefaults(options);
+	  options = setDefaults(options);
 		exec(success, error, 'MapKit', 'showMap', [options]);
+	},
+
+	move: function (options, success, error) {
+		exec(success, error, 'MapKit', 'move', [options]);
 	},
 
 	addMapPins: function(pins, success, error) {
@@ -63,6 +63,22 @@ MapKit.prototype = {
 
 	changeMapType: function(mapType, success, error) {
 		exec(success, error, 'MapKit', 'changeMapType', [mapType ? { "mapType": mapType } :{ "mapType": 0 }]);
+	},
+
+	destroyMap: function(success, error) {
+		exec(success, error, 'MapKit', 'destroyMap', []);
+	},
+
+	setLocation: function (options, success, error) {
+		exec(success, error, 'MapKit', 'setLocation', [options]);
+	},
+
+	reverseGeocode: function(options, success, error) {
+		exec(success, error, 'MapKit', 'reverseGeocode', [options]);
+	},
+
+	openLocationSettings: function(success, error) {
+		exec(success, error, 'MapKit', 'openLocationSettings', []);
 	}
 
 };
