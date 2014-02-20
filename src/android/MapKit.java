@@ -118,6 +118,8 @@ public class MapKit extends CordovaPlugin {
                             }
                         });
 
+                        mapView.getMap().setMyLocationEnabled(true);
+
                         mapView.getMap().setOnCameraChangeListener(new OnCameraChangeListener() {
                             @Override
                             public void onCameraChange(CameraPosition cp) {
